@@ -1,0 +1,12 @@
+services:
+  hashicorp.vault.api:
+    image: ${DOCKER_REGISTRY-}hashicorp.vault.api
+    build:
+      context: ./src
+      dockerfile: HashiCorp.Vault.Api/Dockerfile
+    environment:
+      HashiCorpVaultOptions__Address: https://host.docker.internal
+      HashiCorpVaultOptions__HostHeader: vault.localhost
+    ports:
+      - 9030:9030
+    user: "1654:1654"

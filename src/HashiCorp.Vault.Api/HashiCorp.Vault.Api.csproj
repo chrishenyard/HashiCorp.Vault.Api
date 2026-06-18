@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>df0fc705-7bed-4ddd-95fa-a9cf465d38e3</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="ChrisHenyard.Hashicorp.Vault.Package" />
+	<PackageReference Include="FluentValidation" />
+	<PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+	<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
+	<PackageReference Include="OpenTelemetry.Exporter.Console" />
+	<PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
+	<PackageReference Include="OpenTelemetry.Extensions.Hosting" />
+	<PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
+	<PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" />
+	<PackageReference Include="OpenTelemetry.Instrumentation.Http" />
+	<PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
+	<PackageReference Include="OpenTelemetry.Instrumentation.StackExchangeRedis" />
+	<PackageReference Include="Scalar.AspNetCore" />
+	<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
+	<PackageReference Include="Seq.App.OTelMetrics" />
+	<PackageReference Include="Serilog" />
+	<PackageReference Include="Serilog.AspNetCore" />
+	<PackageReference Include="Serilog.Sinks.Console" />
+	<PackageReference Include="Serilog.Sinks.Seq" />
+  </ItemGroup>
+
+</Project>
