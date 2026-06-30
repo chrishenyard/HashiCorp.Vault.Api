@@ -1,0 +1,7 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultConnection
+metadata:
+  name: hashicorp-vault-api-vault-connection
+  namespace: hashicorp-vault-api
+spec:
+  address: http://vault.vault.svc.cluster.local:8200

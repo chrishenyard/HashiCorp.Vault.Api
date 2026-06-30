@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hashicorp-vault-api
+  annotations:
+    kompose.cmd: C:\Users\chenyard\AppData\Local\Microsoft\WinGet\Links\kompose.exe -f docker-compose.yml -f docker-compose.override.yml -o deploy/ convert
+    kompose.version: 1.38.0 (a8f5d1cbd)
+  name: hashicorp-vault-api
+  namespace: hashicorp-vault-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hashicorp-vault-api-service
+  template:
+    metadata:
+      labels:
+        app: hashicorp-vault-api-service
+    spec:
+      containers:
+      - name: hashicorp-vault-api
+        image: hashicorp.vault.api
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 9030
+            protocol: TCP
+        volumeMounts:
+          - name: api-https-cert
+            mountPath: /https
+            readOnly: true
+        env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Production
+          - name: ASPNETCORE_HTTPS_PORTS
+            value: "9030"
+          - name: ASPNETCORE_Kestrel__Certificates__Default__Password
+            value: ""
+          - name: ASPNETCORE_Kestrel__Certificates__Default__Path
+            value: /https/aspnetapp.pfx          
+          - name: HashiCorpVaultOptions__Address
+            value: http://vault.vault.svc.cluster.local:8200
+          - name: HashiCorpVaultOptions__HostHeader
+            value: ""
+          - name: HashiCorpVaultOptions__RoleName
+            value: demo-app-role
+          - name: ApiKey
+            valueFrom:
+              secretKeyRef:
+                name: config
+                key: ApiKey
+          - name: SqlConnectionString
+            valueFrom:
+              secretKeyRef:
+                name: config
+                key: SqlConnectionString
+      volumes:
+        - name: api-https-cert
+          secret:
+            secretName: hashicorp-vault-api-tls

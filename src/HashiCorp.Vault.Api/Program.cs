@@ -27,13 +27,9 @@ builder.Host
 builder
     .AddConfiguration()
     .Services.AddServices(builder.Configuration)
-    .AddProblemDetails()
     .AddExceptionHandler<GlobalExceptionHandler>()
+    .AddProblemDetails()
     .AddOpenApi();
-
-var certPassword =
-    builder.Configuration["SecretOptions:KestrelCertificatesPassword"];
-builder.Configuration["Kestrel:Certificates:Default:Password"] = certPassword;
 
 var app = builder.Build();
 

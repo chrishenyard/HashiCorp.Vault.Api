@@ -5,8 +5,16 @@ services:
       context: ./src
       dockerfile: HashiCorp.Vault.Api/Dockerfile
     environment:
+      ASPNETCORE_HTTPS_PORTS: 9030
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /home/app/.aspnet/https/aspnetapp.pfx
+      ASPNETCORE_Kestrel__Certificates__Default__Password: ""
+      ASPNETCORE_ENVIRONMENT:
       HashiCorpVaultOptions__Address: https://host.docker.internal
       HashiCorpVaultOptions__HostHeader: vault.localhost
+      HashiCorpVaultOptions__RoleId:
+      HashiCorpVaultOptions__SecretId:
     ports:
       - 9030:9030
     user: "1654:1654"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro

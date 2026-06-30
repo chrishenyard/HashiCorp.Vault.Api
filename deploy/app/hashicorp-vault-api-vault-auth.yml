@@ -1,0 +1,14 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: hashicorp-vault-api-static-auth
+  namespace: hashicorp-vault-api
+spec:
+  method: kubernetes
+  mount: kubernetes
+  vaultConnectionRef: hashicorp-vault-api-vault-connection
+  kubernetes:
+    role: demo-app-role
+    serviceAccount: default
+    audiences:
+      - vault
