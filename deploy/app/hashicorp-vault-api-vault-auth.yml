@@ -10,5 +10,3 @@ spec:
   kubernetes:
     role: demo-app-role
     serviceAccount: default
-    audiences:
-      - vault
